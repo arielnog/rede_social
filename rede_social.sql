@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Jun-2019 às 18:51
--- Versão do servidor: 10.1.40-MariaDB
--- versão do PHP: 7.3.5
+-- Generation Time: 06-Jun-2019 às 01:36
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,8 +40,8 @@ CREATE TABLE `amigos` (
 --
 
 INSERT INTO `amigos` (`id_amigos`, `id_solicitante`, `id_solicitado`, `status`) VALUES
-(3, 1, 2, 2),
-(4, 1, 3, 2);
+(27, 1, 3, 1),
+(29, 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -104,8 +104,9 @@ CREATE TABLE `postagem` (
 --
 
 INSERT INTO `postagem` (`id_post`, `post`, `img`, `data_post`, `id_user`) VALUES
-(1, 'ParabÃ©ns ao Liverpool pela sua vitÃ³ria na final da Champions', 'https://images-na.ssl-images-amazon.com/images/I/51qwJMbFL2L._SX425_.jpg', '2019-06-05 09:44:31', 1),
-(2, 'AtÃ© hoje, considerada a pior bola', 'https://http2.mlstatic.com/bola-adidas-jabulani-da-final-D_NQ_NP_686042-MLB27247179532_042018-F.jpg', '2019-06-05 09:49:35', 2);
+(2, 'AtÃ© hoje, considerada a pior bola', 'https://http2.mlstatic.com/bola-adidas-jabulani-da-final-D_NQ_NP_686042-MLB27247179532_042018-F.jpg', '2019-06-05 09:49:35', 2),
+(3, 'aaa', 'https://http2.mlstatic.com/replica-taca-trofeu-da-copa-do-mundo-fifa-tamanho-oficial-D_NQ_NP_828840-MLB27364673626_052018-F.jpg', '2019-06-05 23:20:54', 7),
+(4, 'asdsa', 'https://http2.mlstatic.com/replica-taca-trofeu-da-copa-do-mundo-fifa-tamanho-oficial-D_NQ_NP_828840-MLB27364673626_052018-F.jpg', '2019-06-05 23:29:52', 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,8 @@ INSERT INTO `usuario` (`id_user`, `email`, `senha`, `nome`, `sobrenome`, `foto`,
 (3, 'ccc@ccc.ccc', 'e10adc3949ba59abbe56e057f20f883e', 'Isaac', 'Andrade', 'https://conteudo.imguol.com.br/c/esporte/10/2019/03/17/lionel-messi-atacante-do-barcelona-celebra-gol-1552863233908_v2_900x506.jpg', '1999-08-02', 'Masculino', 'SÃ£o Paulo', 'SÃ£o Paulo', 'Santos', 'Messi'),
 (4, 'ddd@ddd.ddd', 'e10adc3949ba59abbe56e057f20f883e', 'Cristian ', 'Bruno', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cristiano_Ronaldo_2018.jpg/250px-Cristiano_Ronaldo_2018.jpg', '1995-07-14', 'Indefinido', 'Sergipe', 'Aracaju', 'Real Madrid', 'Cristiano Ronaldo'),
 (5, 'eee@eee.eee', 'e10adc3949ba59abbe56e057f20f883e', 'Fernada', 'Silva', 'https://extra.globo.com/incoming/22984156-934-043/w448h673-PROP/soccer-worldcup-bel-jpn_.jpg', '1999-04-02', 'Feminino', 'Bahia', 'Feira de Santana', 'Orlando City', 'Marta'),
-(6, 'fff@fff.fff', 'e10adc3949ba59abbe56e057f20f883e', 'Larissa', 'Souza', 'https://extra.globo.com/incoming/22984156-934-043/w448h673-PROP/soccer-worldcup-bel-jpn_.jpg', '1984-12-06', 'Feminino', 'Pernanbuco', 'Recife', 'Barcelona', 'Martens');
+(6, 'fff@fff.fff', 'e10adc3949ba59abbe56e057f20f883e', 'Larissa', 'Souza', 'https://extra.globo.com/incoming/22984156-934-043/w448h673-PROP/soccer-worldcup-bel-jpn_.jpg', '1984-12-06', 'Feminino', 'Pernanbuco', 'Recife', 'Barcelona', 'Martens'),
+(7, 'jjj@jjj.jjj', 'e10adc3949ba59abbe56e057f20f883e', 'Marcelo', 'da Hora', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Adriano_Leite_Ribeiro_01.jpg/220px-Adriano_Leite_Ribeiro_01.jpg', '2012-03-31', 'Masculino', 'Bahia', 'Salvador', 'Botafogo', 'Ronaldinho');
 
 --
 -- Indexes for dumped tables
@@ -189,31 +191,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `amigos`
 --
 ALTER TABLE `amigos`
-  MODIFY `id_amigos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_amigos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `curtida`
 --
 ALTER TABLE `curtida`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `postagem`
 --
 ALTER TABLE `postagem`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
