@@ -2,6 +2,8 @@
 include_once "conecta_bd.php";
 session_start();
 
+$id_user= $_SESSION["id_user"];
+
   if ($_SESSION["logado"] != "ok") {
     header("Location: login.php");
   }
@@ -43,23 +45,26 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large" style="vertical-align: middle;">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="home.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d2"><i class="far fa-futbol"></i> Soccer Field</a>
-  <a href="perfil.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i style="padding-top:9px;" class="fa fa-user"></i></a>
+  <a href="perfil.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Meu Perfil"><i style="padding-top:9px;" class="fa fa-user"></i></a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Amigos"><i style="padding-top:9px;" class="fas fa-user-friends"></i></a>
    <!--Logoff ta aqui-->
   <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Sair"><i style="padding-top:9px;" class="fa fa-power-off"></i></a>
+  <!--Pesquisar Perfil, continua aparecendo o da sessão-->
   <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Pesquisar Amigos"><i style="padding-top:9px;" class="fa fa-search"></i></a>
  </div>
 </div>
 
 <!-- Navbar responsiva -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-
-  <a href="pesquisar.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
   <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-padding-large">Meus Amigos</a>
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
 </div>
 
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+<div class="w3-container w3-content" style="max-width:100%;margin-top:80px">
   <!-- The Grid -->
   <div class="w3-row">
 
@@ -103,8 +108,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <?php
 
   $sql = "SELECT *
-          FROM usuario
-          $filtro_sql";
+          FROM usuario $filtro_sql
+          WHERE id_user NOT IN ($id_user)";
 
   $retorno = $con->query( $sql );
 

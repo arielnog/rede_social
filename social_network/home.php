@@ -46,8 +46,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar responsiva -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
   <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
-  <a href="pesquisar.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-padding-large">Meus Amigos</a>
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
 </div>
 
@@ -110,24 +111,23 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
         $id_user = $_SESSION["id_user"];
 
-            $sql = "SELECT a.id_post, a.post, a.img, a.data_post, a.id_user, b.id_user, b.nome,b.sobrenome,b.foto,c.*
+            $sql = "SELECT a.id_post, a.post, a.img, a.data_post, a.id_user, b.id_user, b.nome,b.sobrenome,b.foto
             FROM postagem as a
             INNER JOIN usuario as b ON a.id_user = b.id_user
             INNER JOIN amigos as c ON a.id_user = c.id_solicitado
             WHERE c.status=2
             AND c.id_solicitante='{$id_user}'
             UNION
-            SELECT a.id_post, a.post, a.img, a.data_post, a.id_user, b.id_user, b.nome,b.sobrenome,b.foto,c.*
+            SELECT a.id_post, a.post, a.img, a.data_post, a.id_user, b.id_user, b.nome,b.sobrenome,b.foto
             FROM postagem as a
             INNER JOIN usuario as b ON a.id_user = b.id_user
             INNER JOIN amigos as c ON a.id_user = c.id_solicitante
             WHERE c.id_solicitado='{$id_user}'
             AND c.status=2
             UNION
-            SELECT DISTINCT a.id_post, a.post, a.img, a.data_post, a.id_user, b.id_user, b.nome,b.sobrenome,b.foto,c.*
+            SELECT DISTINCT a.id_post, a.post, a.img, a.data_post, a.id_user, b.id_user, b.nome,b.sobrenome,b.foto
             FROM postagem as a
             INNER JOIN usuario as b ON a.id_user = b.id_user
-            INNER JOIN amigos as c ON a.id_user = c.id_solicitante
             WHERE b.id_user='{$id_user}'
             ORDER BY data_post desc";
 

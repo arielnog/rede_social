@@ -45,8 +45,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar responsiva -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
   <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
-  <a href="pesquisar.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-padding-large">Meus Amigos</a>
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
 </div>
 
@@ -110,7 +111,7 @@ AND a.status = 2";
     echo "<div class='w3-container w3-card w3-white w3-round w3-margin'><br>
       <img src=$foto alt='Avatar' class='w3-left w3-margin-right' style='width:60px;height:80px;'>
       <h4>$nome $sobrenome</h4><br>
-      <span class='w3-right w3-margin-left'><a href='outro_perfil.php?id=$id'><button type='submit'class='w3-button'>Ver Perfil</button></a></span>
+      <span class='w3-right w3-margin-left'><a href='perfil_amigo.php?id=$id'><button type='submit'class='w3-button'>Ver Perfil</button></a></span>
       <span class='w3-right w3-margin-left'><a href='desfazer_amizade.php?id=$id'><button type='submit'class='w3-button'>Desfazer Amizade</button></a></span>
       <hr class='w3-clear'>
     </div>";

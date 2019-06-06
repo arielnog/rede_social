@@ -9,7 +9,7 @@ if ($_SESSION["logado"] != "ok") {
 }
 
 if ($id == NULL) {
-    echo "O ID não foi passado! <br><br>";
+    echo "O ID nÃĢo foi passado! <br><br>";
   }
 
 $sql = "SELECT *, DATE_FORMAT(aniversario, '%d/%m/%Y') as aniversario
@@ -53,35 +53,35 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
 <body class="w3-theme-l5">
 
-
+<!-- Navbar -->
 <div class="w3-top">
-  <div class="w3-top">
-   <div class="w3-bar w3-theme-d2 w3-left-align w3-large" style="vertical-align: middle;">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-    <a href="home.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d2"><i class="far fa-futbol"></i> Soccer Field</a>
-    <a href="perfil.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Meu Perfil"><i style="padding-top:9px;" class="fa fa-user"></i></a>
-    <a href="todos_amigos.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Amigos"><i style="padding-top:9px;" class="fas fa-user-friends"></i></a>
-     <!--Logoff ta aqui-->
-    <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Sair"><i style="padding-top:9px;" class="fa fa-power-off"></i></a>
-    <!--Pesquisar Perfil, continua aparecendo o da sessão-->
-    <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Pesquisar Amigos"><i style="padding-top:9px;" class="fa fa-search"></i></a>
-   </div>
-  </div>
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large" style="vertical-align: middle;">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="home.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d2"><i class="far fa-futbol"></i> Soccer Field</a>
+  <a href="perfil.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Meu Perfil"><i style="padding-top:9px;" class="fa fa-user"></i></a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Amigos"><i style="padding-top:9px;" class="fas fa-user-friends"></i></a>
+   <!--Logoff ta aqui-->
+  <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Sair"><i style="padding-top:9px;" class="fa fa-power-off"></i></a>
+  <!--Pesquisar Perfil, continua aparecendo o da sessão-->
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Pesquisar Amigos"><i style="padding-top:9px;" class="fa fa-search"></i></a>
+ </div>
+</div>
 
-  <!-- Navbar responsiva -->
-  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
-    <a href="pesquisar.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
-    <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
-    <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
-  </div>
-  
+<!-- Navbar responsiva -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
+  <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-padding-large">Meus Amigos</a>
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
+  <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
+</div>
+
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:80%;margin-top:80px">
-  
+
   <div class="w3-row">
     <div class="w3-card w3-round w3-white">
-        <div class="w3-container">     
+        <div class="w3-container">
          <h4 class="w3-center"><?php echo "$nome $sobrenome";?></h4>
          <h4 class="w3-center"><img width="150px" src='<?php echo $foto;?>'></h4>
          <hr>
@@ -90,55 +90,56 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><?php echo $aniversario;?></p>
          <p><i class="fas fa-running fa-fw w3-margin-right w3-text-theme"></i><?php echo $jogador; ?></p>
          <p><i class="fas fa-venus-mars fa-fw w3-margin-right w3-text-theme"></i> <?php echo $sexo; ?></p>
-        </div>
+       </div>
       </div>
       <br>
 
-    
-    <!--Publicações do Usuario-->
-      <?php
-          error_reporting(1);
-          include_once "conecta_bd.php";
 
-          $id = $_GET["id"];
+    <!--Publicações-->
+    <?php
+        error_reporting(1);
+        include_once "conecta_bd.php";
 
-          $sql = "SELECT postagem.id_post, postagem.post, postagem.img, postagem.data_post, postagem.id_user, usuario.id_user, usuario.nome,usuario.sobrenome,usuario.foto
-          FROM postagem
-          INNER JOIN usuario
-          ON usuario.id_user = postagem.id_user
-          WHERE postagem.id_user = $id
-          ORDER BY .postagem.data_post desc";
+        $id = $_GET["id"];
 
-            $retorno = $con->query( $sql );
+        $sql = "SELECT postagem.id_post, postagem.post, postagem.img, postagem.data_post, postagem.id_user, usuario.id_user, usuario.nome,usuario.sobrenome,usuario.foto,DATE_FORMAT(data_post, '%H:%i:%s %d/%m/%Y') as data_post
+        FROM postagem
+        INNER JOIN usuario
+        ON usuario.id_user = postagem.id_user
+        WHERE postagem.id_user = $id
+        ORDER BY .postagem.data_post desc";
 
-            while ($registro = $retorno->fetch_array()){
+          $retorno = $con->query( $sql );
 
-              $id_post = $registro["id_post"];
-              $post = $registro["post"];
-              $img = $registro["img"];
-              $data_post = $registro["data_post"];
+          while ($registro = $retorno->fetch_array()){
 
-              $id = $registro['id_user'];
-              $nome = $registro['nome'];
-              $sobrenome = $registro['sobrenome'];
-              $foto = $registro['foto'];
+            $id_post = $registro["id_post"];
+            $post = $registro["post"];
+            $img = $registro["img"];
+            $data_post = $registro["data_post"];
 
-              echo
-                "<div class='w3-container w3-card w3-white w3-round w3-margin'><br>
-                  <img src=$foto class='w3-left w3-margin-right' style='width:60px'>
-                  <span class='w3-right w3-opacity'>$data_post </span><br>
-                  <h4>$nome $sobrenome</h4>
-                  <br>
-                  <hr class='w3-clear'>
-                  <p>$post</p>
-                  <img src='$img' style='width:30%' class='w3-margin-bottom'>
-                  <br>
-              </div>";
-                }
+            $id = $registro['id_user'];
+            $nome = $registro['nome'];
+            $sobrenome = $registro['sobrenome'];
+            $foto = $registro['foto'];
+
+            echo
+              "<div class='w3-container w3-card w3-white w3-round w3-margin'><br>
+                <img src=$foto class='w3-left w3-margin-right' style='width:60px'>
+                <span class='w3-right w3-opacity'>$data_post </span><br>
+                <h4>$nome $sobrenome</h4>
+                <br>
+                <hr class='w3-clear'>
+                <p>$post</p>
+                <img src='$img' style='width:30%' class='w3-margin-bottom'>
+                <br>
+            </div>";
+              }
 
 ?>
-    
-    </div>
+
+
+  </div>
   </div>
 </div>
 <br>
@@ -151,8 +152,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   <p align="center">Ariel Nogueira e Marcelo da Hora</p>
 </footer>
 
-  
-  
 <script>
 function myFunction(id) {
   var x = document.getElementById(id);

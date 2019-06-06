@@ -1,14 +1,37 @@
 <?php
-error_reporting(1);
-include_once"conecta_bd";
-
+include_once "conecta_bd.php";
 session_start();
 
-  if ($_SESSION["logado"] != "ok") {
-    header("Location: login.php");
+$id = $_GET["id"];
+
+if ($_SESSION["logado"] != "ok") {
+  header("Location: login.php");
+}
+
+if ($id == NULL) {
+    echo "O ID nÃĢo foi passado! <br><br>";
   }
 
- ?>
+$sql = "SELECT *, DATE_FORMAT(aniversario, '%d/%m/%Y') as aniversario
+        FROM usuario
+        WHERE id_user = $id";
+
+$retorno = $con->query( $sql );
+
+while ( $registro = $retorno->fetch_array() ){
+
+  $id = $registro["id_user"];
+  $nome = $registro["nome"];
+  $sobrenome = $registro["sobrenome"];
+  $foto = $registro["foto"];
+  $time = $registro["time"];
+  $jogador = $registro["jogador"];
+  $aniversario = $registro["aniversario"];
+  $cidade = $registro["cidade"];
+  $estado = $registro["estado"];
+  $sexo = $registro["sexo"];
+}
+?>
 
 <html>
 
@@ -47,68 +70,72 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar responsiva -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
   <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
-  <a href="pesquisar.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-padding-large">Meus Amigos</a>
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
 </div>
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:80%;margin-top:80px">
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
   <div class="w3-row">
     <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-          <!-- Colocar o nome do usuario da sessão-->
-         <h4 class="w3-center"> <?php echo $_SESSION["nome_user"]." ".$_SESSION["sobrenome_user"];?> </h4>
-         <!-- Pegar a imagem do banco e colocar no src-->
-         <h4 class="w3-center"><img width="150px" src='<?php echo $_SESSION["foto_user"];?>'></h4>
+         <h4 class="w3-center"><?php echo "$nome $sobrenome";?></h4>
+         <h4 class="w3-center"><img width="150px" src='<?php echo $foto;?>'></h4>
          <hr>
-
-         <p><i class="fa fa-heartbeat fa-fw w3-margin-right w3-text-theme"></i><?php echo $_SESSION["time_user"];?></p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo $_SESSION["cidade_user"].", ".$_SESSION["estado_user"];?></p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $_SESSION["aniversario_user"]; ?></p>
-         <p><i class="fas fa-running fa-fw w3-margin-right w3-text-theme"></i> <?php echo $_SESSION["jogador"]; ?></p>
-         <p><i class="fas fa-venus-mars fa-fw w3-margin-right w3-text-theme"></i> <?php echo $_SESSION["sexo"]; ?></p>
-        </div>
+         <p><i class="fa fa-heartbeat fa-fw w3-margin-right w3-text-theme"></i><?php echo $time;?></p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo "$cidade $estado";?></p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><?php echo $aniversario;?></p>
+         <p><i class="fas fa-running fa-fw w3-margin-right w3-text-theme"></i><?php echo $jogador; ?></p>
+         <p><i class="fas fa-venus-mars fa-fw w3-margin-right w3-text-theme"></i> <?php echo $sexo; ?></p>
+       </div>
       </div>
       <br>
 
 
     <!--Publicações-->
-      <?php
+    <?php
+        error_reporting(1);
+        include_once "conecta_bd.php";
 
-      error_reporting(1);
-       include_once "conecta_bd.php";
-       $id_user= $_SESSION["id_user"];
-         $sql = "SELECT postagem.id_post, postagem.post, postagem.img, postagem.data_post, postagem.id_user, usuario.id_user, usuario.nome,usuario.sobrenome,usuario.foto,DATE_FORMAT(data_post, '%H:%i:%s %d/%m/%Y') as data_post
-         FROM postagem
-         INNER JOIN usuario
-         ON usuario.id_user = postagem.id_user
-         WHERE postagem.id_user = $id_user
-         ORDER BY .postagem.data_post desc";
-         $retorno = $con->query( $sql );
-         while ($registro = $retorno->fetch_array()){
-           $id_post = $registro["id_post"];
-           $post = $registro["post"];
-           $img = $registro["img"];
-           $data_post = $registro["data_post"];
-           $id = $registro['id_user'];
-           $nome = $registro['nome'];
-           $sobrenome = $registro['sobrenome'];
-           $foto = $registro['foto'];
-   echo
-     "<div class='w3-container w3-card w3-white w3-round w3-margin'><br>
-       <img src=$foto class='w3-left w3-margin-right' style='width:60px'>
-       <span class='w3-right w3-opacity'>$data_post</span><br>
-       <span class='w3-right w3-opacity'><a href='apagar.php?id_post=$id_post'<button type='submit' action='apagar.php' class='w3-button'>Apagar</button></a></span>
-       <h4>$nome $sobrenome</h4>
-       <br>
-       <hr class='w3-clear'>
-       <p>$post</p>
-       <img src='$img' style='width:30%' class='w3-margin-bottom'>
-       <br>
-       <a href='comentario.php?id_post=$id_post'><button type='button' class='w3-button w3-theme-d2 w3-margin-bottom'><i class='fa fa-comment'></i>  Comentario</button></a>
-   </div>";
-     }
+        $id = $_GET["id"];
+
+        $sql = "SELECT postagem.id_post, postagem.post, postagem.img, postagem.data_post, postagem.id_user, usuario.id_user, usuario.nome,usuario.sobrenome,usuario.foto,DATE_FORMAT(data_post, '%H:%i:%s %d/%m/%Y') as data_post
+        FROM postagem
+        INNER JOIN usuario
+        ON usuario.id_user = postagem.id_user
+        WHERE postagem.id_user = $id
+        ORDER BY .postagem.data_post desc";
+
+          $retorno = $con->query( $sql );
+
+          while ($registro = $retorno->fetch_array()){
+
+            $id_post = $registro["id_post"];
+            $post = $registro["post"];
+            $img = $registro["img"];
+            $data_post = $registro["data_post"];
+
+            $id = $registro['id_user'];
+            $nome = $registro['nome'];
+            $sobrenome = $registro['sobrenome'];
+            $foto = $registro['foto'];
+
+            echo
+              "<div class='w3-container w3-card w3-white w3-round w3-margin'><br>
+                <img src=$foto class='w3-left w3-margin-right' style='width:60px'>
+                <span class='w3-right w3-opacity'>$data_post </span><br>
+                <h4>$nome $sobrenome</h4>
+                <br>
+                <hr class='w3-clear'>
+                <p>$post</p>
+                <img src='$img' style='width:30%' class='w3-margin-bottom'>
+                <br>
+                <a href='comentario.php?id_post=$id_post'><button type='button' class='w3-button w3-theme-d2 w3-margin-bottom'><i class='fa fa-comment'></i>  Comentario</button></a>
+            </div>";
+              }
+
 ?>
 
 

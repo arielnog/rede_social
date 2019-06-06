@@ -49,8 +49,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar responsiva -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
   <a href="#" class="w3-bar-item w3-button w3-padding-large">-</a>
-  <a href="pesquisar.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="perfil.php" class="w3-bar-item w3-button w3-padding-large">Meu Perfil</a>
+  <a href="todos_amigos.php" class="w3-bar-item w3-button w3-padding-large">Meus Amigos</a>
+  <a href="pesquisar_amigos.php" class="w3-bar-item w3-button w3-padding-large">Pesquisar Pessoas</a>
   <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">Logout</a>
 </div>
 
@@ -63,7 +64,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       include_once "conecta_bd.php";
 
 
-        $sql = "SELECT *
+        $sql = "SELECT *,DATE_FORMAT(data_post, '%H:%i:%s %d/%m/%Y') as data_post
         FROM postagem
         INNER JOIN usuario
         ON usuario.id_user = postagem.id_user
@@ -120,7 +121,7 @@ Echo"
 
   $id_post = $_GET["id_post"];
 
-    $sql = "SELECT comentario.*,postagem.id_post, usuario.id_user, usuario.nome,usuario.sobrenome,usuario.foto
+    $sql = "SELECT comentario.*,postagem.id_post, usuario.id_user, usuario.nome,usuario.sobrenome,usuario.foto,DATE_FORMAT(data_comentario, '%H:%i:%s %d/%m/%Y') as data_comentario
     FROM comentario
     INNER JOIN usuario ON usuario.id_user = comentario.id_user
     INNER JOIN postagem ON postagem.id_post = comentario.id_post
