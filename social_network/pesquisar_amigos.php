@@ -109,7 +109,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
   $sql = "SELECT *
           FROM usuario $filtro_sql
-          WHERE id_user NOT IN ($id_user)";
+          ";
 
   $retorno = $con->query( $sql );
 
