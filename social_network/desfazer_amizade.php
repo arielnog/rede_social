@@ -7,7 +7,8 @@ include_once "conecta_bd.php";
   $id = $_GET["id"];
 
   $sql = "DELETE FROM amigos
-          WHERE id_solicitado = $id or id_solicitante = $id_user";
+          WHERE id_solicitante = $id or id_solicitado = $id_user
+          AND id_solicitante = $id_user or id_solicitado = $id";
 
 
   $retorno = $con->query( $sql );
